@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+
+</style>
+
+<body>
+    <nav>
+        <p>Voting System</p>
+        <div id="userInfo">
+            <p>farhan31523h</p>
+            <p>LogOut</p>
+        </div>
+    </nav>
+    <div id="votingDiv">
+        <h1>Vote For Your Favorite Programing Language</h1>
+        <div id="votingArea">
+            <div id="votingOptions" class="box">
+                <div class="lang">
+                    <img src="1.png" id="img1" alt="">
+
+                    <div class="votePercentage">
+                        <p id="per1">0%</p>
+                    </div>
+                </div>
+                <div class="lang">
+                    <img src="2.png" id="img2" alt="">
+                    <div class="votePercentage">
+                        <p id="per2">0%</p>
+                    </div>
+                </div>
+            </div>
+            <div id="summary" class="box">
+                <div id="langImg">
+                    <img src="1.png" class="size" alt="">
+                    <img src="2.png" class="size" alt="">
+                </div>
+                <div class="count">
+                    <p>Total Count:</p>
+                    <p id="vc1">0</p>
+                    <p id="vc2">0</p>
+                </div>
+                <div id="winner">
+                    <h3>And the winner is</h1>
+                    <div id="winner1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let sol = document.getElementById("img1");
+    let py = document.getElementById("img2");
+    let vc2 = document.getElementById("vc2");
+    let vc1 = document.getElementById("vc1");
+    let solCount = 0;
+    let pyCount = 0;
+    let solAvg = 0;
+    let pyAvg = 0;
+    let total = 0;
+
+    sol.addEventListener("click", () => {
+        solCount++;
+        percentage(solCount, pyCount);
+        solcount(solCount);
+        winner(solCount, pyCount);
+        console.log(solCount);
+    })
+
+    py.addEventListener("click", () => {
+        pyCount++;
+        percentage(solCount, pyCount);
+        pycount(pyCount);
+        winner(solCount, pyCount);
+        console.log(pyCount);
+    })
+
+    function percentage(c1, c2) {
+        total = c1 + c2;
+        solAvg = Math.round((c1 / total) * 100);
+        pyAvg = Math.round((c2 / total) * 100);
+        solNum(solAvg);
+        pyNum(pyAvg);
+    }
+
+    function solNum(num) {
+        let per1 = document.getElementById("per1");
+        per1.innerText = num+"%";
+    }
+
+    function pyNum(num) {
+        let per2 = document.getElementById("per2");
+        per2.innerText = num+"%";
+    }
+
+    function solcount(c){
+        if(c>=10){
+            vc2.style.left = 217.7+"px";
+        }
+        vc1.innerText = c;  
+    }
+
+    function pycount(c){       
+        vc2.innerText = c;  
+    }
+
+    function winner(a,b){
+        let winner = document.getElementById("winner1");
+        if(solCount>pyCount){
+            winner.innerHTML = `<img src="1.png" id="win" alt="">`;
+        }
+        else if(solCount<pyCount){
+            winner.innerHTML = `<img src="2.png" id="win" alt="">`;
+        }
+        else{
+            console.log("tie");
+        }
+    }
+
+</script>
+
+</html>
